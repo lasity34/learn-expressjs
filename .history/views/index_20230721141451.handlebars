@@ -45,7 +45,7 @@
                 class="button-primary"
                 type="submit"
                 name="button"
-                {{#if disableAdd}}disabled{{/if}}
+                {{#if disable}}disabled{{/if}}
               >Add</button>
              </form>
 
@@ -67,8 +67,7 @@
                   <td>
                     <a href="/actions">Total</a>
                   </td>
-                <td class="{{#if hasCriticalLevel}}danger{{else}}{{#if hasWarningLevel}}warning{{else}}{{/if}}{{/if}}">R<span class="totalSettings">{{totals.grandTotal}}</span></td>
-
+                  <td> R<span class="totalSettings">{{totals.grandTotal}}</span> </td>
                 </tr>
               </table>
 
@@ -120,8 +119,8 @@
                   type="submit"
                   name="button"
                 >Update settings</button>
+
               </form>
-              <button type="button">Reset</button>
             </div>
           </div>
         </div>

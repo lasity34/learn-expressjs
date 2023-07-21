@@ -4,7 +4,7 @@ export default function SettingsBill() {
     let callCost;
     let warningLevel;
     let criticalLevel; 
-    let settingsSet = true
+    let settingsSet = false
 
     let actionList = [];
 
@@ -13,8 +13,6 @@ export default function SettingsBill() {
         callCost = Number(settings.callCost);
         warningLevel = settings.warningLevel;
         criticalLevel = settings.criticalLevel;
-
-        settingsSet  = false
     }
 
     function getSettings
@@ -105,33 +103,18 @@ export default function SettingsBill() {
         const total = grandTotal();
         const reachedWarningLevel = total >= warningLevel 
             && total < criticalLevel;
-            
+
         return reachedWarningLevel;
     }
 
     function hasReachedCriticalLevel(){
         
         const total = grandTotal();
-        if (total > criticalLevel) {
-            settingsSet = true;
-        }
         return total >= criticalLevel;
     }
 
-   
-
-    
-
     function disableButton() {
-      return  settingsSet
-    }
-
-    function reset() {
-        let smsCost = 0 
-    let callCost= 0
-    let warningLevel = 0
-    let criticalLevel = 0
-    let settingsSet = true
+      return  grandTotal() !== 0
     }
 
     return {
@@ -143,7 +126,6 @@ export default function SettingsBill() {
         totals,
         hasReachedWarningLevel,
         hasReachedCriticalLevel,
-        disableButton,
-        reset
+        disableButton
     }
 }

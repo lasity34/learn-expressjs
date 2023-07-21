@@ -2,18 +2,18 @@ import express from "express";
 import bodyParser from "body-parser";
 import { engine } from "express-handlebars";
 import SettingsBill from "./settings-billjs.js";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
+// import { fileURLToPath } from "url";
+// import { dirname } from "path";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
 
 const settingsBill = SettingsBill();
 let app = express();
 app.engine(
   "handlebars",
   engine({
-    layoutsDir: __dirname + "/views/layouts",
+    // layoutsDir: __dirname + "/views/layouts",
     defaultLayout: "main",
   })
 );
@@ -27,13 +27,7 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 app.get("/", function (req, res) {
-  res.render("index", {
-    settings: settingsBill.getSettings(),
-    totals: settingsBill.totals(),
-    disableAdd: settingsBill.disableButton(),
-    hasWarningLevel: settingsBill.hasReachedWarningLevel(),
-    hasCriticalLevel: settingsBill.hasReachedCriticalLevel()
-  });
+  res.render("index");
 });
 
 app.post("/settings", function (req, res) {
@@ -66,15 +60,8 @@ app.get("/actions/:actionType", function (req, res) {
   });
 });
 
-app.post('/reset', function (req, res) {
-  settingsBill.reset()
-  res.redirect('/')
-})
-
 const PORT = process.env.PORT || 3012;
 
 app.listen(PORT, function () {
   console.log("App started at port", PORT);
 });
-
-

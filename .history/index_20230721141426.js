@@ -30,9 +30,7 @@ app.get("/", function (req, res) {
   res.render("index", {
     settings: settingsBill.getSettings(),
     totals: settingsBill.totals(),
-    disableAdd: settingsBill.disableButton(),
-    hasWarningLevel: settingsBill.hasReachedWarningLevel(),
-    hasCriticalLevel: settingsBill.hasReachedCriticalLevel()
+    disable: settingsBill.disableButton()
   });
 });
 
@@ -65,11 +63,6 @@ app.get("/actions/:actionType", function (req, res) {
     actions: settingsBill.actionsFor(actionsType),
   });
 });
-
-app.post('/reset', function (req, res) {
-  settingsBill.reset()
-  res.redirect('/')
-})
 
 const PORT = process.env.PORT || 3012;
 

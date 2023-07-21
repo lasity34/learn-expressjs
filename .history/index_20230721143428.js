@@ -66,11 +66,6 @@ app.get("/actions/:actionType", function (req, res) {
   });
 });
 
-app.post('/reset', function (req, res) {
-  settingsBill.reset()
-  res.redirect('/')
-})
-
 const PORT = process.env.PORT || 3012;
 
 app.listen(PORT, function () {
