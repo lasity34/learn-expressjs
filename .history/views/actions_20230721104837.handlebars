@@ -4,20 +4,19 @@
   <table>
     <thead>
       <tr>
-        <th>Type</th>
-        <th>Price</th>
-        <th>When</th>
+        <td>Type</td>
+        <td>Price</td>
+        <td>When</td>
       </tr>
     </thead>
     <tbody>
       {{#each actions}}
       <tr>
           <td>{{type}}</td>
-          <td>R{{cost}}</td>
+          <td>{{price}}</td>
           <td>{{timestamp}}</td>
       </tr>
       {{/each}}
     </tbody>
   </table>
 </div>
-
