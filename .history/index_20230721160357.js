@@ -32,8 +32,7 @@ app.get("/", function (req, res) {
     totals: settingsBill.totals(),
     disableAdd: settingsBill.disableButton(),
     hasWarningLevel: settingsBill.hasReachedWarningLevel(),
-    hasCriticalLevel: settingsBill.hasReachedCriticalLevel(),
-    backToNormal: settingsBill.backToNormal()
+    hasCriticalLevel: settingsBill.hasReachedCriticalLevel()
   });
 });
 
@@ -79,6 +78,6 @@ app.listen(PORT, function () {
   console.log("App started at port", PORT);
 });
 
+console.log(settingsBill.hasReachedCriticalLevel())
 
-  
 

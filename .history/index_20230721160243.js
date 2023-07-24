@@ -27,13 +27,18 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 app.get("/", function (req, res) {
+  let updatedSettings = settingsBill.getSettings();
+  let updatedTotals = settingsBill.totals();
+  let disableAddButton = settingsBill.disableButton();
+  let hasReachedWarning = settingsBill.hasReachedWarningLevel();
+  let hasReachedCritical = settingsBill.hasReachedCriticalLevel();
+
   res.render("index", {
-    settings: settingsBill.getSettings(),
-    totals: settingsBill.totals(),
-    disableAdd: settingsBill.disableButton(),
-    hasWarningLevel: settingsBill.hasReachedWarningLevel(),
-    hasCriticalLevel: settingsBill.hasReachedCriticalLevel(),
-    backToNormal: settingsBill.backToNormal()
+    settings: updatedSettings,
+    totals: updatedTotals,
+    disableAdd: disableAddButton,
+    hasWarningLevel: hasReachedWarning,
+    hasCriticalLevel: hasReachedCritical,
   });
 });
 
@@ -79,6 +84,6 @@ app.listen(PORT, function () {
   console.log("App started at port", PORT);
 });
 
+console.log(settingsBill.hasReachedCriticalLevel())
 
-  
 

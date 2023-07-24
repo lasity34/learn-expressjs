@@ -130,19 +130,20 @@ export default function SettingsBill() {
     function disableButton() {
       return  settingsSet
     }
-    
+
+    console.log(grandTotal())
 
     function reset() {
     smsCost = 0 
     callCost= 0
      warningLevel = 0
      criticalLevel = 0
+     settingsSet = true
     actionList = []
-    settingsSet = !(grandTotal() < criticalLevel);
+    grandTotal()
     }
 
     return {
-        reset,
         setSettings,
         getSettings,
         recordAction,
@@ -153,6 +154,6 @@ export default function SettingsBill() {
         hasReachedCriticalLevel,
         backToNormal,
         disableButton,
-
+        reset
     }
 }

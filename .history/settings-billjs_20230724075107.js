@@ -130,7 +130,8 @@ export default function SettingsBill() {
     function disableButton() {
       return  settingsSet
     }
-    
+
+    console.log(grandTotal())
 
     function reset() {
     smsCost = 0 

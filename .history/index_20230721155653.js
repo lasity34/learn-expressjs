@@ -32,8 +32,7 @@ app.get("/", function (req, res) {
     totals: settingsBill.totals(),
     disableAdd: settingsBill.disableButton(),
     hasWarningLevel: settingsBill.hasReachedWarningLevel(),
-    hasCriticalLevel: settingsBill.hasReachedCriticalLevel(),
-    backToNormal: settingsBill.backToNormal()
+    hasCriticalLevel: settingsBill.hasReachedCriticalLevel()
   });
 });
 
@@ -69,9 +68,13 @@ app.get("/actions/:actionType", function (req, res) {
 
 app.post('/reset', function (req, res) {
   settingsBill.reset()
-  res.redirect('/');
+  res.render('index', {
+    settings: settingsBill.getSettings(),
+    totals: settingsBill.totals(),
+    hasWarningLevel: settingsBill.hasReachedWarningLevel(),
+    hasCriticalLevel: settingsBill.hasReachedCriticalLevel()
+});
 })
-
 
 const PORT = process.env.PORT || 3012;
 
@@ -79,6 +82,6 @@ app.listen(PORT, function () {
   console.log("App started at port", PORT);
 });
 
+console.log(settingsBill.hasReachedCriticalLevel())
 
-  
 

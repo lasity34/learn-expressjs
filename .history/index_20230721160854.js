@@ -79,6 +79,6 @@ app.listen(PORT, function () {
   console.log("App started at port", PORT);
 });
 
+console.log(settingsBill.hasReachedCriticalLevel())
 
-  
 

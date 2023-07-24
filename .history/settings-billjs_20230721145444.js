@@ -14,7 +14,7 @@ export default function SettingsBill() {
         warningLevel = settings.warningLevel;
         criticalLevel = settings.criticalLevel;
 
-        settingsSet = !(grandTotal() < criticalLevel);
+        settingsSet  = false
     }
 
     function getSettings
@@ -35,10 +35,6 @@ export default function SettingsBill() {
         }
         else if (action === 'call'){
             cost = callCost;
-        }
-
-        if (grandTotal() + cost > criticalLevel) {
-            return; 
         }
 
         actionList.push({ 
@@ -117,32 +113,29 @@ export default function SettingsBill() {
         
         const total = grandTotal();
         if (total > criticalLevel) {
+            settingsSet = true;
         }
         return total >= criticalLevel;
     }
 
-    function backToNormal() {
-        const total = grandTotal();
-        return total === 0;
-    }
+   
+
     
 
     function disableButton() {
       return  settingsSet
     }
-    
 
     function reset() {
     smsCost = 0 
     callCost= 0
      warningLevel = 0
      criticalLevel = 0
+     settingsSet = true
     actionList = []
-    settingsSet = !(grandTotal() < criticalLevel);
     }
 
     return {
-        reset,
         setSettings,
         getSettings,
         recordAction,
@@ -151,8 +144,7 @@ export default function SettingsBill() {
         totals,
         hasReachedWarningLevel,
         hasReachedCriticalLevel,
-        backToNormal,
         disableButton,
-
+        reset
     }
 }
