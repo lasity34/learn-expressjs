@@ -49,7 +49,7 @@ export default function SettingsBill() {
         actionList.push({ 
             type: action,
             cost,
-            timestamp: moment().fromNow()
+            timestamp: new Date()
         });
     }
 
