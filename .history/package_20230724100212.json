@@ -24,9 +24,9 @@
   },
   "contributors": [],
   "scripts": {
-    "dev": "nodemon index.js",
-   
-    "start": "node index.js"
+    "dev": "",
+    "test": "",
+    "start": "node index.handlebars"
   },
   "license": "MIT",
   "dependencies": {
