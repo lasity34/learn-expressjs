@@ -6,19 +6,10 @@
     <link rel="stylesheet" href="/css/skeleton.css" />
     <link rel="stylesheet" href="/css/style.css" />
   </head>
-    <body data-modal-message="{{{modalMessage}}}">
+  <body>
     <div class="container">
       {{{body}}}
     </div>
-    {{#if modalMessage}}
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p id="modal-message">{{modalMessage}}</p>
-        </div>
-    </div>
-{{/if}}
-
   </body>
   <script src="/js/client.js"></script>
 </html>

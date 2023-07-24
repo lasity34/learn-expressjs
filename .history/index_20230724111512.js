@@ -38,9 +38,9 @@ app.use(session({
 
 app.get("/", function (req, res) {
   const modalMessage = req.session.modalMessage;
-  console.log('Modal Message:', modalMessage); // Log just the modalMessage
   req.session.modalMessage = null; 
   console.log('Session:', req.session); // Log the entire session
+  console.log('Modal Message:', req.session.modalMessage); // Log just the modalMessage
 
   res.render("index", {
     settings: settingsBill.getSettings(),
@@ -52,7 +52,6 @@ app.get("/", function (req, res) {
     modalMessage: modalMessage
   });
 });
-
 
 app.post("/settings", function (req, res) {
   settingsBill.setSettings({

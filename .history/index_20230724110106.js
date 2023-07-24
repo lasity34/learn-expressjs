@@ -5,8 +5,7 @@ import { engine } from "express-handlebars";
 import SettingsBill from "./settings-billjs.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import dotenv from 'dotenv';
-dotenv.config();
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -31,16 +30,16 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 app.use(session({
-  secret: process.env.SECRET, // replace with your own secret value
+  secret: 'your secret value', // replace with your own secret value
   resave: false,
   saveUninitialized: true
 }));
 
 app.get("/", function (req, res) {
   const modalMessage = req.session.modalMessage;
-  console.log('Modal Message:', modalMessage); // Log just the modalMessage
   req.session.modalMessage = null; 
   console.log('Session:', req.session); // Log the entire session
+  console.log('Modal Message:', req.session.modalMessage); // Log just the modalMessage
 
   res.render("index", {
     settings: settingsBill.getSettings(),
@@ -53,20 +52,19 @@ app.get("/", function (req, res) {
   });
 });
 
-
 app.post("/settings", function (req, res) {
   settingsBill.setSettings({
     callCost: req.body.callCost,
     smsCost: req.body.smsCost,
     warningLevel: req.body.warningLevel,
-    criticalLevel: req.body.criticalLevel
+    criticalLevel: req.body.criticalLevel,
+    modalMessage: "Settings have been updated."
   });
 
   req.session.modalMessage = "Settings have been updated.";
+
   res.redirect("/");
 });
-
-
 
 app.post("/action", function (req, res) {
   settingsBill.recordAction(req.body.actionType);

@@ -63,7 +63,7 @@ app.post("/settings", function (req, res) {
   });
 
   req.session.modalMessage = "Settings have been updated.";
-  res.redirect("/");
+  res.json({ modalMessage: "Settings have been updated." });
 });
 
 
